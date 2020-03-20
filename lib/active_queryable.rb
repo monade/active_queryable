@@ -1,8 +1,11 @@
 # frozen_string_literal: true
-require 'active_support/concern'
-module ActiveQueryable extend ActiveSupport::Concern
 
-  QUERYABLE_VALID_PARAMS = [:filter, :order, :page, :per].freeze
+require 'active_support/concern'
+
+module ActiveQueryable
+	extend ActiveSupport::Concern
+
+  QUERYABLE_VALID_PARAMS = [:filter, :sort, :page, :per].freeze
 
   included do
     class_attribute :_queryable_default_order
@@ -12,8 +15,8 @@ module ActiveQueryable extend ActiveSupport::Concern
 	end
 
 	module Initializer
-		def as_queryable
-			send :include, ActiveQueryable::ClassMethods
+    def as_queryable
+			send :include, ActiveQueryable
 		end
 	end
 
@@ -24,8 +27,7 @@ module ActiveQueryable extend ActiveSupport::Concern
       self._queryable_default_per = options[:per] || 25
       self._queryable_filter_keys = ((options[:filter] || []) + ['not']).map(&:to_sym)
 
-      queryable = self
-      scope :query_by, ->(params) { queryable.queryable_scope(params) }
+      scope :query_by, ->(params) { queryable_scope(params) }
       scope :of_not, ->(ids) { where.not(id: ids) }
     end
 
@@ -107,6 +109,7 @@ module ActiveQueryable extend ActiveSupport::Concern
       params.inject(query) do |current_query, (k, v)|
         scope = "of_#{k}"
 
+
         if current_query.respond_to?(scope, true)
           current_query.public_send(scope, v)
         else
@@ -117,4 +120,3 @@ module ActiveQueryable extend ActiveSupport::Concern
   end
 end
 ActiveRecord::Base.send :extend, ActiveQueryable::Initializer
-
