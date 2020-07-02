@@ -7,7 +7,7 @@ A light and simple gem for sorting / filtering / paginating a model in Rails.
 Simply add the gem to your Gemfile
 
 ```ruby
-  gem 'active_queryable'
+  gem 'active_queryable', github: 'monade/active_queryable'
 ```
 
 or alternatively `bundle add active_queryable`
@@ -38,3 +38,9 @@ Let's query!
   Person.query_by(order: '-name') # SELECT * FROM people ORDER BY name DESC
 ```
 
+It also handles pagination, using kaminari!
+```ruby
+  Person.query_by(per: 20, page: 2) # SELECT * FROM people LIMIT 20 OFFSET 20
+  # Accepts also JSON:API-styled parameters
+  Person.query_by(page: { number: 2, size: 20 }) # SELECT * FROM people LIMIT 20 OFFSET 20
+```

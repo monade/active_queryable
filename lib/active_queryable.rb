@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/concern'
+require 'kaminari/activerecord'
 
 module ActiveQueryable
 	extend ActiveSupport::Concern
@@ -66,8 +67,13 @@ module ActiveQueryable
 
     def queryable_validate_page_params(params)
       page_params = {}
-      page_params[:page] = params[:page] || _queryable_default_page
-      page_params[:per] = params[:per] || _queryable_default_per
+      if params[:page].respond_to?(:dig)
+        page_params[:page] = params.dig(:page, :number) || _queryable_default_page
+        page_params[:per] = params.dig(:page, :size) || params[:per] || _queryable_default_per
+      else
+        page_params[:page] = params[:page] || _queryable_default_page
+        page_params[:per] = params[:per] || _queryable_default_per
+      end
       page_params
     end
 
