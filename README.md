@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/monade/active-queryable.svg?branch=master)](https://travis-ci.org/monade/active-queryable)
+
 # Active Queryable
 
 A light and simple gem for sorting / filtering / paginating a model in Rails.
