@@ -9,11 +9,12 @@ class Common < ActiveRecord::Base
   self.abstract_class = true
 
   as_queryable
-  queryable order: { name: :asc }, filter: ['name', 'article_title']
+  queryable order: { name: :asc }, filter: ['name']
 end
 
 class Person < Common
   expand_queryable filter: ['email']
+  expand_queryable filter: ['article_title']
 
   has_many :articles
 

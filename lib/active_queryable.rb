@@ -34,7 +34,8 @@ module ActiveQueryable
     end
 
     def expand_queryable(options)
-      self._queryable_expandable_filter_keys = (((options[:filter] || [])).map(&:to_sym))
+      self._queryable_expandable_filter_keys ||= []
+      self._queryable_expandable_filter_keys += (((options[:filter] || [])).map(&:to_sym))
     end
 
     def queryable_scope(params)
@@ -85,7 +86,7 @@ module ActiveQueryable
     def queryable_validate_filter_params(filter_params)
       return nil if filter_params.nil?
 
-      filters = ((self._queryable_filter_keys | self._queryable_expandable_filter_keys) + ['not']).map(&:to_sym)
+      filters = (((self._queryable_filter_keys || []) | (self._queryable_expandable_filter_keys || [])) + ['not']).map(&:to_sym)
       unpermitted = filter_params.except(*filters)
       Rails.logger.warn("Unpermitted queryable parameters: #{unpermitted.keys.join(', ')}") if unpermitted.present?
 
