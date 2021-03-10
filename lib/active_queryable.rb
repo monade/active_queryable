@@ -13,6 +13,7 @@ module ActiveQueryable
     class_attribute :_queryable_default_page
     class_attribute :_queryable_default_per
     class_attribute :_queryable_filter_keys
+    class_attribute :_queryable_expandable_filter_keys
 	end
 
 	module Initializer
@@ -26,10 +27,15 @@ module ActiveQueryable
       self._queryable_default_order = options[:order] || { id: :asc }
       self._queryable_default_page = options[:page] || 1
       self._queryable_default_per = options[:per] || 25
-      self._queryable_filter_keys = ((options[:filter] || []) + ['not']).map(&:to_sym)
+      self._queryable_filter_keys = (((options[:filter] || [])).map(&:to_sym))
 
       scope :query_by, ->(params) { queryable_scope(params) }
       scope :of_not, ->(ids) { where.not(id: ids) }
+    end
+
+    def expand_queryable(options)
+      self._queryable_expandable_filter_keys ||= []
+      self._queryable_expandable_filter_keys += (((options[:filter] || [])).map(&:to_sym))
     end
 
     def queryable_scope(params)
@@ -80,10 +86,11 @@ module ActiveQueryable
     def queryable_validate_filter_params(filter_params)
       return nil if filter_params.nil?
 
-      unpermitted = filter_params.except(*_queryable_filter_keys)
+      filters = (((self._queryable_filter_keys || []) | (self._queryable_expandable_filter_keys || [])) + ['not']).map(&:to_sym)
+      unpermitted = filter_params.except(*filters)
       Rails.logger.warn("Unpermitted queryable parameters: #{unpermitted.keys.join(', ')}") if unpermitted.present?
 
-      filter_params.slice(*_queryable_filter_keys)
+      filter_params.slice(*filters)
     end
 
     def queryable_parse_order_params(params)

@@ -5,9 +5,16 @@ ActiveRecord::Base.establish_connection(
   database: ':memory:'
 )
 
-class Person < ActiveRecord::Base
+class Common < ActiveRecord::Base
+  self.abstract_class = true
+
   as_queryable
-  queryable order: { name: :asc }, filter: ['name', 'article_title']
+  queryable order: { name: :asc }, filter: ['name']
+end
+
+class Person < Common
+  expand_queryable filter: ['email']
+  expand_queryable filter: ['article_title']
 
   has_many :articles
 
@@ -15,6 +22,7 @@ class Person < ActiveRecord::Base
   scope :by_article_title, ->(direction) { joins(:articles).order(:'articles.title' => direction) }
 
 end
+
 
 class Article < ActiveRecord::Base
   as_queryable

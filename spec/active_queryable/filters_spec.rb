@@ -3,8 +3,9 @@ require 'spec_helper'
 describe 'Filters' do
   context 'default filters' do
     it 'applies column name-based filters' do
-      query = Person.query_by(filter: { name: 'john doe' }, per: 'all')
+      query = Person.query_by(filter: { name: 'john doe', email: 'e@mail.com' }, per: 'all')
       expect(query.to_sql).to include('"people"."name" = \'john doe\'')
+      expect(query.to_sql).to include('"people"."email" = \'e@mail.com\'')
       expect(query).to include(Person.first)
     end
 
