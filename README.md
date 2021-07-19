@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/monade/active-queryable.svg?branch=master)](https://travis-ci.org/monade/active-queryable)
+[![Build Status](https://travis-ci.com/monade/active-queryable.svg?branch=master)](https://travis-ci.com/monade/active-queryable)
 
 # Active Queryable
 
