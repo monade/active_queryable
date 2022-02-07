@@ -4,6 +4,7 @@ All notable changes to this project made by Monade Team are documented in this f
 ## [UNRELEASED]
 ### Added
 - Implement `expand_queryable` to allow inheritance / composition
+- Support for rails 7
 
 ## [0.2.0] - 2020-07-02
 

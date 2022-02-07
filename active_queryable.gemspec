@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.3.0'
   s.homepage    = 'https://rubygems.org/gems/active_queryable'
   s.license     = 'MIT'
-  s.add_dependency 'activesupport', ['>= 5', '< 7']
+  s.add_dependency 'activesupport', ['>= 5', '< 8']
   s.add_dependency 'kaminari-activerecord'
   s.add_development_dependency 'rspec', '~> 3'
   s.add_development_dependency 'rubocop'
