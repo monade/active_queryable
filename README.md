@@ -35,8 +35,8 @@ or alternatively `bundle add active_queryable`
 
 Let's query!
 ```ruby
-  Person.query_by(filters: { name: 'john'}) # SELECT * FROM people WHERE people.name = 'john'
-  Person.query_by(filters: { name_like: 'john', article_title: 'some article' }) # SELECT * FROM people INNER JOIN articles ON articles.person_id = people.id WHERE people.name LIKE 'john' AND article.title = 'some article'
+  Person.query_by(filter: { name: 'john'}) # SELECT * FROM people WHERE people.name = 'john'
+  Person.query_by(filter: { name_like: 'john', article_title: 'some article' }) # SELECT * FROM people INNER JOIN articles ON articles.person_id = people.id WHERE people.name LIKE 'john' AND article.title = 'some article'
   Person.query_by(order: '-name') # SELECT * FROM people ORDER BY name DESC
 ```
 
