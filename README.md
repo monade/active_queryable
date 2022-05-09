@@ -26,7 +26,7 @@ or alternatively `bundle add active_queryable`
     # Configure order and filters
     queryable order: { name: :asc },
               # Name filter is implicit, others will search for a scope
-              filters: [:name, :name_like, :article_title]
+              filter: [:name, :name_like, :article_title]
 
     scope :of_name_like, ->(name) { where('name LIKE ?', "%#{name}%") }
     scope :of_article_title, ->(title) { joins(:articles).where(articles: { title: title }) }
