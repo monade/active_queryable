@@ -46,3 +46,12 @@ It also handles pagination, using kaminari!
   # Accepts also JSON:API-styled parameters
   Person.query_by(page: { number: 2, size: 20 }) # SELECT * FROM people LIMIT 20 OFFSET 20
 ```
+
+About Monade
+----------------
+
+![monade](https://monade.io/wp-content/uploads/2021/06/monadelogo.png)
+
+active_queryable is maintained by [mònade srl](https://monade.io/en/home-en/).
+
+We <3 open source software. [Contact us](https://monade.io/en/contact-us/) for your next project!
