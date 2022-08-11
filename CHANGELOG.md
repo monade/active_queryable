@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project made by Monade Team are documented in this file. For info refer to team@monade.io
 
-## [UNRELEASED]
+## [0.3.0] - 2022-08-11
 ### Added
 - Implement `expand_queryable` to allow inheritance / composition
 - Support for rails 7

@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/monade/active-queryable.svg?branch=master)](https://travis-ci.com/monade/active-queryable)
+![Build Status](https://github.com/monade/active_queryable/actions/workflows/test.yml/badge.svg)
+[![Gem Version](https://badge.fury.io/rb/active_queryable.svg)](https://badge.fury.io/rb/active_queryable)
 
 # Active Queryable
 
@@ -9,7 +10,7 @@ A light and simple gem for sorting / filtering / paginating a model in Rails.
 Simply add the gem to your Gemfile
 
 ```ruby
-  gem 'active_queryable', github: 'monade/active_queryable'
+  gem 'active_queryable'
 ```
 
 or alternatively `bundle add active_queryable`
