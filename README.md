@@ -1,4 +1,4 @@
-![Build Status](https://github.com/monade/active_queryable/actions/workflows/test.yml/badge.svg)
+![Build Status](https://github.com/monade/active-queryable/actions/workflows/test.yml/badge.svg)
 [![Gem Version](https://badge.fury.io/rb/active_queryable.svg)](https://badge.fury.io/rb/active_queryable)
 
 # Active Queryable
