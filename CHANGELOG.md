@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project made by Monade Team are documented in this file. For info refer to team@monade.io
 
+## [0.3.1] - 2022-12-11
+### Added
+- Yard documentation
+
+### Changed
+- Cleaner code
+
 ## [0.3.0] - 2022-08-11
 ### Added
 - Implement `expand_queryable` to allow inheritance / composition

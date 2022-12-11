@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
 module ActiveQueryable
-	VERSION = '0.3.0'
+  # @return [String] the version of the gem
+  VERSION = '0.3.0'
 end
