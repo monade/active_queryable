@@ -2,5 +2,5 @@
 
 module ActiveQueryable
   # @return [String] the version of the gem
-  VERSION = '0.3.0'
+  VERSION = '0.3.1'
 end
