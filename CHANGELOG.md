@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project made by Monade Team are documented in this file. For info refer to team@monade.io
 
+## [0.4.0] - 2025-01-20
+### Added
+- Support for rails 8
+- Default filter `of_ids`
+
+### Changed
+- Default when `page` is an object, `per` will be now ignored
+
+### Removed
+- Support for rails 5
+- Support for ruby 2.7
+
 ## [0.3.1] - 2022-12-11
 ### Added
 - Yard documentation

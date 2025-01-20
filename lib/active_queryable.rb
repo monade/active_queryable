@@ -70,6 +70,7 @@ module ActiveQueryable
       queryable_configure_options(options)
 
       scope :query_by, ->(params) { queryable_scope(params) }
+      scope :of_ids, ->(ids) { where(id: ids) }
       scope :of_not, ->(ids) { where.not(id: ids) }
     end
 
@@ -89,7 +90,7 @@ module ActiveQueryable
     # @return [void]
     def expand_queryable(options)
       self._queryable_expandable_filter_keys ||= []
-      self._queryable_expandable_filter_keys += ((options[:filter] || [])).map(&:to_sym)
+      self._queryable_expandable_filter_keys += (options[:filter] || []).map(&:to_sym)
     end
 
     # @param params [Hash,ActionController::Parameters]
@@ -123,7 +124,7 @@ module ActiveQueryable
       self._queryable_default_order = options[:order] || { id: :asc }
       self._queryable_default_page = options[:page] || 1
       self._queryable_default_per = options[:per] || 25
-      self._queryable_filter_keys = (((options[:filter] || [])).map(&:to_sym))
+      self._queryable_filter_keys = ((options[:filter] || []).map(&:to_sym))
     end
 
     # @param params [Hash,ActionController::Parameters]
@@ -165,7 +166,7 @@ module ActiveQueryable
       page_params = {}
       if params[:page].respond_to?(:dig)
         page_params[:page] = params.dig(:page, :number) || _queryable_default_page
-        page_params[:per] = params.dig(:page, :size) || params[:per] || _queryable_default_per
+        page_params[:per] = params.dig(:page, :size) || _queryable_default_per
       else
         page_params[:page] = params[:page] || _queryable_default_page
         page_params[:per] = params[:per] || _queryable_default_per

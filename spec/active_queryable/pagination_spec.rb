@@ -16,8 +16,8 @@ describe 'Pagination' do
     expect(query.to_sql).to include('LIMIT 2 OFFSET 2')
   end
 
-  it 'ignores invalid values of page' do
+  it 'ignores per when page is an object' do
     query = Person.query_by(page: {}, per: 20)
-    expect(query.to_sql).to include('LIMIT 20 OFFSET 0')
+    expect(query.to_sql).to include('LIMIT 25 OFFSET 0')
   end
 end
