@@ -14,3 +14,4 @@ end
 gem 'yard'
 gem 'mutex_m'
 gem 'bigdecimal'
+gem 'base64'
