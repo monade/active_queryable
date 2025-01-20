@@ -12,3 +12,5 @@ else
   gem 'sqlite3', '~> 1.7.3'
 end
 gem 'yard'
+gem 'mutex_m'
+gem 'bigdecimal'
