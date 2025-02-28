@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project made by Monade Team are documented in this file. For info refer to team@monade.io
 
+## [0.4.1] - 2025-02-28
+### Fixed
+- Unsupported keys passed to `query_by` are simply ignored with a debug log, instead of an error log
+
 ## [0.4.0] - 2025-01-20
 ### Added
 - Support for rails 8

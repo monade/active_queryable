@@ -103,9 +103,7 @@ module ActiveQueryable
     def queryable_scope(params)
       params = params.to_unsafe_h if params.respond_to? :to_unsafe_h
       params = params.with_indifferent_access if params.respond_to?(:with_indifferent_access)
-      params.each_key do |k|
-        QUERYABLE_VALID_PARAMS.include?(k.to_sym) || Rails.logger.error("Invalid key #{k} in queryable")
-      end
+      queryable_log_unpermitted_params(params)
 
       order_params = queryable_validate_order_params(params[:sort])
       query = queryable_parse_order_scope(order_params, self)
@@ -114,6 +112,18 @@ module ActiveQueryable
     end
 
     private
+
+    # @param params [Hash,ActionController::Parameters]
+    # @return [void]
+    def queryable_log_unpermitted_params(params)
+      params.each_key do |k|
+        next if QUERYABLE_VALID_PARAMS.include?(k.to_sym)
+
+        Rails.logger.debug(
+          "Unsupported key `#{k}` passed to `query_by` will be ignored. Allowed keys: #{QUERYABLE_VALID_PARAMS.join(', ')}"
+        )
+      end
+    end
 
     # @option options [Hash<Symbol,Symbol>] :order { id: :asc }
     # @option options [Integer] :page 1
