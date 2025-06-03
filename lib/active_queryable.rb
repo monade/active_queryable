@@ -219,7 +219,7 @@ module ActiveQueryable
         if current_query.respond_to?(scope, true)
           current_query.public_send(scope, v)
         else
-          current_query.order(params)
+          current_query.order({ k => v })
         end
       end || query
     end

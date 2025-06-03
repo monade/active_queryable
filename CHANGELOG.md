@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project made by Monade Team are documented in this file. For info refer to team@monade.io
 
+## [0.4.2] - 2025-06-03
+### Fixed
+- Bug when mixing scope and column-based ordering
+
 ## [0.4.1] - 2025-02-28
 ### Fixed
 - Unsupported keys passed to `query_by` are simply ignored with a debug log, instead of an error log

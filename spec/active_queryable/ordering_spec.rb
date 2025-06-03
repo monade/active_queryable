@@ -15,4 +15,9 @@ describe 'Ordering' do
     query = Person.query_by(sort: '-article_title', per: 'all')
     expect(query.to_sql).to include('ORDER BY "articles"."title" DESC')
   end
+
+  it 'order by column and scope mixed' do
+    query = Person.query_by(sort: 'name,-article_title', per: 'all')
+    expect(query.to_sql).to include('ORDER BY "people"."name" ASC, "articles"."title" DESC')
+  end
 end
